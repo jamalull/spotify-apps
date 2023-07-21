@@ -1,19 +1,32 @@
-const { listSongs, findSongById } = require("../models/songs.model");
+const { listSongs, findSongById, sortSongs } = require("../models/songs.model");
 
-const getListSong = () => {
-  const songData = listSongs();
+const listSongService = () => {
+  const listSongData = listSongs();
 
-  if(songData == null) {
+  if(listSongData == null) {
     throw {
       type : "data-not-found",
       message : "Cannot get songs",
     };
   }
 
-  return songData;
-}
+  return listSongData;
+};
 
-const getSongById = (id) => {
+const sortSongService = () => {
+  const sortSongData = sortSongs();
+
+  if(sortSongData == null) {
+    throw {
+      type : "data-not-found",
+      message : "Cannot get songs",
+    };
+  }
+
+  return sortSongData;
+};
+
+const songByIdService = (id) => {
 
   const songData = findSongById(id);
 
@@ -29,4 +42,4 @@ const getSongById = (id) => {
   return song;
 };
 
-module.exports = { getListSong, getSongById };
+module.exports = { listSongService, songByIdService, sortSongService };

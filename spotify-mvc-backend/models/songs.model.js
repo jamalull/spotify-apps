@@ -11,7 +11,7 @@ let songPlaylist = [
     title : "Be Happy 2",
     artist : [{name : "Annonym 2"}],
     url : "https://open.spotify.com/track/4SGQ9TT7NTUAMnYvuwsWfW?si=99ffbc2b277d423a",
-    playedCount : 8
+    playedCount : 17
   },
   {
     id    : 3,
@@ -30,4 +30,10 @@ const findSongById = (id) => {
   return songPlaylist.find((song) => song.id == id);
 };
 
-module.exports = { listSongs, findSongById };
+const sortSongs = () => {
+  return songPlaylist.sort((a,b) => {
+    return a.playedCount - b.playedCount;
+  });
+};
+
+module.exports = { listSongs, findSongById, sortSongs };

@@ -1,8 +1,8 @@
-const { getListSong, getSongById } = require("../services/songs.service");
+const { listSongService, songByIdService, sortSongService } = require("../services/songs.service");
 
-const showListSong = () => {
+const showListSongController = () => {
   try {
-    const listSong = getListSong();
+    const listSong = listSongService();
 
     return {
       status : "success",
@@ -15,10 +15,25 @@ const showListSong = () => {
   }
 };
 
-const getSong = (id) => {
+const sortSongController = () => {
+  try {
+    const sortSong = sortSongService();
+
+    return {
+      status : "success",
+      data : {
+        sortSong,
+      },
+    };
+  } catch (e) {
+    throw e;
+  }
+};
+
+const showSongByIdController = (id) => {
 
   try {
-    const songTitle = getSongById(id);
+    const songTitle = songByIdService(id);
 
     return {
       status : "success",
@@ -31,4 +46,4 @@ const getSong = (id) => {
   }
 };
 
-module.exports = { showListSong, getSong };
+module.exports = { showListSongController, showSongByIdController, sortSongController };
